@@ -79,3 +79,11 @@ GROUP BY category.name;
 SELECT rating, AVG(length)
 FROM film
 GROUP BY rating;
+
+-- 13. Encuentra el nombre y apellido de los actores que aparecen en la película con title 'Indian Love'.
+
+SELECT first_name, last_name
+FROM actor
+INNER JOIN film_actor ON actor.actor_id = film_actor.actor_id
+INNER JOIN film ON film_actor.film_id = film.film_id
+WHERE film.title = 'Indian Love';

@@ -146,3 +146,14 @@ INNER JOIN film_actor ON film_actor.actor_id = actor.actor_id
 GROUP BY actor.first_name, actor.last_name
 HAVING COUNT(film_actor.film_id)>5;
 
+/* 22. Encuentra el título de todas las películas que fueron alquiladas por más de 5 días. Utiliza una
+subconsulta para encontrar los rental_ids con una duración superior a 5 días y luego selecciona las
+películas correspondientes*/
+
+SELECT rental.rental_id, film.title
+FROM film 
+INNER JOIN inventory ON inventory.film_id = film.film_id
+INNER JOIN rental ON rental.inventory_id = inventory.inventory_id
+WHERE rental.rental_id IN (SELECT rental_id
+								FROM rental
+                                WHERE DATEDIFF(return_date, rental_date)>5);

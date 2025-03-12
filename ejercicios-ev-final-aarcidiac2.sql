@@ -66,5 +66,16 @@ GROUP BY rental.customer_id, customer.first_name, customer.last_name;
 
 -- 11. Encuentra la cantidad total de películas alquiladas por categoría y muestra el nombre de la categoría junto con el recuento de alquileres.
 
-SELECT *
-FROM rental;
+SELECT category.name AS categoria, COUNT(*) AS num_alquileres  -- Info que me pide el ejercicio
+FROM rental
+INNER JOIN inventory ON rental.inventory_id = inventory.inventory_id 
+INNER JOIN film_category ON film_category.film_id = inventory.film_id
+INNER JOIN category ON film_category.category_id = category.category_id
+GROUP BY category.name;
+
+
+-- 12 Encuentra el promedio de duración de las películas para cada clasifiación de la tabla film y muestra la clasificación junto con el promedio de duración.
+
+SELECT rating, AVG(length)
+FROM film
+GROUP BY rating;

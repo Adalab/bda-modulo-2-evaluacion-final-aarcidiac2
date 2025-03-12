@@ -100,3 +100,19 @@ SELECT actor.first_name, actor.last_name
 FROM actor
 LEFT JOIN film_actor ON actor.actor_id = film_actor.actor_id -- Con left join podemos asegurarnos de mantener todos los registros de actor aunq no haya coincidencias con film actor
 WHERE film_actor.film_id IS NULL; 
+
+-- 16.Encuentra el título de todas las películas que fueron lanzadas entre el año 2005 y 2010.
+
+SELECT title
+FROM film
+WHERE release_year > 2005 AND release_year < 2010;
+
+-- 17. Encuentra el título de todas las películas que son de la misma categoría que 'Family'
+
+SELECT title
+FROM film
+INNER JOIN film_category ON film_category.film_id = film.film_id
+INNER JOIN category ON category.category_id = film_category.category_id
+WHERE category.name = 'Family';
+
+-- 18. Muestra el nombre y apellido de los actores aparecen en más de 10 películas

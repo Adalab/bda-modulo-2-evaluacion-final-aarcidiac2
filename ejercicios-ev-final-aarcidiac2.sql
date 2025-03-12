@@ -43,5 +43,15 @@ SELECT actor_id, first_name
 FROM actor 
 WHERE actor_id >10 AND actor_id < 20;
 
+-- 8. Encuentra el título de las películas en la tabla film que no sean ni "R" ni "PG-13" en cuanto a su clasificación
 
+SELECT title
+FROM film
+WHERE rating NOT IN ('R', 'PG-13');
+
+-- 9. Encuentra la cantidad total de películas en cada clasificación de la tabla film y muestra la clasificación junto con el recuento.
+
+SELECT rating, COUNT(*) AS num_pelis
+FROM film
+GROUP BY rating;
 

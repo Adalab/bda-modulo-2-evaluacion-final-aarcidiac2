@@ -116,3 +116,17 @@ INNER JOIN category ON category.category_id = film_category.category_id
 WHERE category.name = 'Family';
 
 -- 18. Muestra el nombre y apellido de los actores aparecen en más de 10 películas
+
+SELECT first_name, last_name, COUNT(film_actor.film_id) AS num_pelis
+FROM actor
+INNER JOIN film_actor ON film_actor.actor_id = actor.actor_id
+GROUP BY first_name, last_name
+HAVING COUNT(film_actor.film_id) > 10;
+
+-- 19. Encuentra el título de todas las películas que son 'R' y tienen una duración mayor a 2 horas en la tabla film
+
+SELECT title
+FROM film
+WHERE rating = 'R' AND length > 120;
+
+

@@ -174,4 +174,6 @@ WHERE actor.actor_id NOT IN (SELECT actor_id
 
 SELECT title
 FROM film
-INNER JOIN 
+INNER JOIN film_category USING (film_id)
+INNER JOIN category USING (category_id)
+WHERE category.name = 'Comedy' AND film.length > 180;

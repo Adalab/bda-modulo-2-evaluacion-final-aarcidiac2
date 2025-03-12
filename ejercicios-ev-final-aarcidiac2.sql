@@ -129,4 +129,20 @@ SELECT title
 FROM film
 WHERE rating = 'R' AND length > 120;
 
+-- 20. Encuentra las categorías de películas que tienen un promedio de duración superior a 120 minutos muestra el nombre de la categoría junto con el promedio de duración.
+
+SELECT category.name, AVG(film.length)
+FROM category
+INNER JOIN film_category ON film_category.category_id = category.category_id
+INNER JOIN film ON film.film_id = film_category.film_id
+GROUP BY category.name
+HAVING AVG(film.length) > 120;
+
+-- 21. Encuentra los actores que han actuado en al menos 5 películas y muestra el nombre del actor junto con la cantidad de películas en las que han actuado.
+
+SELECT first_name, last_name, COUNT(film_actor.film_id) AS cantidad_pelis
+FROM actor
+INNER JOIN film_actor ON film_actor.actor_id = actor.actor_id
+GROUP BY actor.first_name, actor.last_name
+HAVING COUNT(film_actor.film_id)>5;
 

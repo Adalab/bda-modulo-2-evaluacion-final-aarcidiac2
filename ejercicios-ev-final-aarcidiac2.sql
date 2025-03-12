@@ -87,3 +87,16 @@ FROM actor
 INNER JOIN film_actor ON actor.actor_id = film_actor.actor_id
 INNER JOIN film ON film_actor.film_id = film.film_id
 WHERE film.title = 'Indian Love';
+
+-- 14. Muestra el título de todas las películas que contengan la palabra 'dog' o 'cat' en su descripción
+
+SELECT title
+FROM film
+WHERE description LIKE '%dog%' OR '%cat%';
+
+-- 15 Hay algún actor o actriz que no aparezca en ninguna película en la tabla film_actor. 
+
+SELECT actor.first_name, actor.last_name
+FROM actor
+LEFT JOIN film_actor ON actor.actor_id = film_actor.actor_id -- Con left join podemos asegurarnos de mantener todos los registros de actor aunq no haya coincidencias con film actor
+WHERE film_actor.film_id IS NULL; 
